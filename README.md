@@ -18,14 +18,12 @@ Database Schema: Expand the basic models to include Booking.js for reservations 
 
 API Development: Build and manage RESTful routes for user profiles, event management (CRUD), and the booking system.
 
-Security: Implement authentication middleware using JWT to protect private routes.
+Member 2: Backend Developer - Security & Bookings
+Authentication: Implement secure user registration and login logic in routes/auth.js.
 
-Member 2: Frontend Engineer & UI/UX Specialist
-Core Pages: Develop the main user interfaces including the Home page, Event Details, and User Profile.
+Middleware & Security: Develop the auth.js middleware to handle JWT verification and protect private routes.
 
-Admin Tools: Create the Admin Dashboard and the forms for creating or editing events.
-
-State Management: Implement the AuthContext and ThemeContext to handle global application state.
+Booking Logic: Build the Booking.js model and the backend logic for processing seat reservations.
 
 Member 3: Integration & Real-time Systems Engineer
 Live Chat: Implement the Socket.io logic in server.js to enable real-time messaging between event participants.
