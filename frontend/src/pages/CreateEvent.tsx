@@ -38,7 +38,7 @@ const CreateEvent = () => {
     } catch (error: any) {
       toast({
         title: 'Error',
-        description: error.response?.data?.message || 'Failed to create event',
+        description: error.response?.data?.msg || 'Failed to create event',
         variant: 'destructive',
       });
     } finally {

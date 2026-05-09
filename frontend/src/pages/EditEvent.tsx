@@ -66,7 +66,7 @@ const EditEvent = () => {
     } catch (error: any) {
       toast({
         title: 'Error',
-        description: error.response?.data?.message || 'Failed to update event',
+        description: error.response?.data?.msg || 'Failed to update event',
         variant: 'destructive',
       });
     } finally {

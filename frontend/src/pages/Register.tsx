@@ -43,7 +43,7 @@ const Register = () => {
     } catch (error: any) {
       toast({
         title: 'Error',
-        description: error.response?.data?.message || 'Registration failed',
+        description: error.response?.data?.msg || 'Registration failed',
         variant: 'destructive',
       });
     } finally {

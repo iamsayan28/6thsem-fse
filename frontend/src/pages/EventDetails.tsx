@@ -26,6 +26,7 @@ interface Event {
   date: string;
   venue: string;
   seats: number;
+  bookedSeats: number;
 }
 
 const EventDetails = () => {
@@ -68,7 +69,7 @@ const EventDetails = () => {
     } catch (error: any) {
       toast({
         title: 'Error',
-        description: error.response?.data?.message || 'Failed to book event',
+        description: error.response?.data?.msg || 'Failed to book event',
         variant: 'destructive',
       });
     } finally {
@@ -87,7 +88,7 @@ const EventDetails = () => {
     } catch (error) {
       toast({
         title: 'Error',
-        description: 'Failed to delete event',
+        description: error.response?.data?.msg || 'Failed to delete event',
         variant: 'destructive',
       });
     }
@@ -158,8 +159,8 @@ const EventDetails = () => {
                 <Users className="h-5 w-5 text-primary" />
                 <div>
                   <p className="text-sm text-muted-foreground">Availability</p>
-                  <Badge variant={event.seats > 0 ? 'default' : 'destructive'}>
-                    {event.seats > 0 ? `${event.seats} seats` : 'Sold out'}
+                  <Badge variant={(event.seats - event.bookedSeats) > 0 ? 'default' : 'destructive'}>
+                    {(event.seats - event.bookedSeats) > 0 ? `${event.seats - event.bookedSeats} seats left` : 'Sold out'}
                   </Badge>
                 </div>
               </div>
@@ -171,7 +172,7 @@ const EventDetails = () => {
             </Button>
             
             <div className="flex space-x-2">
-              {isUser && event.seats > 0 && (
+              {isUser && (event.seats - event.bookedSeats) > 0 && (
                 <Button onClick={handleBooking} disabled={booking}>
                   {booking ? 'Booking...' : 'Book Now'}
                 </Button>

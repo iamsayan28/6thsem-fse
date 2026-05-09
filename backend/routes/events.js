@@ -31,6 +31,16 @@ router.get('/', async (req, res) => {
   }
 });
 
+// Get bookings of logged-in user (user only) — must be BEFORE /:id to avoid route shadowing
+router.get('/bookings/me', auth('user'), async (req, res) => {
+  try {
+    const bookings = await Booking.find({ user: req.user.userId }).populate('event');
+    res.json(bookings);
+  } catch (err) {
+    res.status(500).json({ msg: 'Failed to fetch bookings' });
+  }
+});
+
 // Get single event details
 router.get('/:id', async (req, res) => {
   try {
@@ -91,14 +101,6 @@ router.post('/book/:id', auth('user'), async (req, res) => {
   }
 });
 
-// Get bookings of logged-in user (user only)
-router.get('/bookings/me', auth('user'), async (req, res) => {
-  try {
-    const bookings = await Booking.find({ user: req.user.userId }).populate('event');
-    res.json(bookings);
-  } catch (err) {
-    res.status(500).json({ msg: 'Failed to fetch bookings' });
-  }
-});
+
 
 module.exports = router;

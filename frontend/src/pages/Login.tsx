@@ -35,7 +35,7 @@ const Login = () => {
     } catch (error: any) {
       toast({
         title: 'Error',
-        description: error.response?.data?.message || 'Login failed',
+        description: error.response?.data?.msg || 'Login failed',
         variant: 'destructive',
       });
     } finally {
